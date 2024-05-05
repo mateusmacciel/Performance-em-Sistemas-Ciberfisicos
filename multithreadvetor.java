@@ -44,8 +44,8 @@ public class Main {
         System.out.print("Números de Threads (1 a 4): ");
         int numeroThreads = scanner.nextInt();
 
-        Double[] vetor = new Double[200_000_000];
-        int intervaloThread = 200_000_000 / numeroThreads;
+        Double[] vetor = new Double[200_000_00];
+        int intervaloThread = 200_000_00 / numeroThreads;
         InicializaThread[] threads = new InicializaThread[numeroThreads];
 
         for (int i = 0; i < numeroThreads; i++) {
@@ -61,7 +61,7 @@ public class Main {
 
         System.out.println("Encerrou.");
 
-        int totalVerifiedCount = ContagemVet.contagem(vetor);
-        System.out.println("Quantidade de valores verificados entre 0.25 e 0.75: " + totalVerifiedCount);
+        int contagem = ContagemVet.contagem(vetor);
+        System.out.println("Quantidade de valores verificados entre 0.25 e 0.75: " + contagem);
     }
 }
