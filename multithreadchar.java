@@ -37,7 +37,7 @@ class ContadorCaracteres {
             }
 
             long fimExecucao = System.currentTimeMillis();
-            System.out.println("Tempo de execução: " + (fimExecucao - inicioExecucao) + " milissegundos");
+            System.out.println("Tempo: " + (fimExecucao - inicioExecucao));
         }
     }
 }
