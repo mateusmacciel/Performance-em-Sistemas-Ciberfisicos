@@ -44,14 +44,14 @@ public class Main {
         System.out.print("Números de Threads (1 a 4): ");
         int numeroThreads = scanner.nextInt();
 
-        Double[] vetor = new Double[200_000_00];
-        int intervaloThread = 200_000_00 / numeroThreads;
+        Double[] vetor = new Double[200_000_000];
+        int intervaloThread = 200_000_000 / numeroThreads;
         InicializaThread[] threads = new InicializaThread[numeroThreads];
 
         for (int i = 0; i < numeroThreads; i++) {
-            int start = i * intervaloThread;
-            int end = (i + 1) * intervaloThread;
-            threads[i] = new InicializaThread(vetor, start, end);
+            int inicio = i * intervaloThread;
+            int fim = (i + 1) * intervaloThread;
+            threads[i] = new InicializaThread(vetor, inicio, fim);
             threads[i].start();
         }
 
