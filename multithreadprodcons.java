@@ -27,6 +27,7 @@ class Produtor extends Thread{
                     this.pilha.add(valor);
                     System.out.println("Produtor " + this.id + " adicionou: " + valor);
                     System.out.println(pilha);
+                    pilha.notify();
                 }
             }
 
