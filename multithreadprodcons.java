@@ -16,11 +16,17 @@ class Produtor extends Thread{
         while(true){
             int valor = random.nextInt(1000);
             synchronized(pilha){
-                if(this.pilha.size() < 10){
-                    this.pilha.add(valor);
-                    System.out.println(pilha);
+                if(this.pilha.size() == 10) {
+                    System.out.println("Pilha cheia.");
+                    try {
+                        pilha.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
-                    System.out.println("Produtor" + this.id + " pilha cheia");
+                    this.pilha.add(valor);
+                    System.out.println("Produtor " + this.id + " adicionou: " + valor);
+                    System.out.println(pilha);
                 }
             }
 
@@ -48,12 +54,18 @@ class Consumidor extends Thread{
     public void run(){
         while(true){
             synchronized(pilha){
-                if(this.pilha.size() > 0){
-                    int valor = this.pilha.remove(this.pilha.size() - 1);
-                    System.out.println("Consumidor" + this.id + " removeu:" + valor);
-                    System.out.println(pilha);
+                if(this.pilha.size() == 0){
+                    System.out.println("Pilha vazia.");
+                    try {
+                        pilha.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
-                    System.out.println("Consumidor" + this.id + " pilha vazia");
+                    int valor = this.pilha.remove(this.pilha.size() - 1);
+                    System.out.println("Consumidor " + this.id + " removeu: " + valor);
+                    System.out.println(pilha);
+                    pilha.notify();
                 }
             }
 
